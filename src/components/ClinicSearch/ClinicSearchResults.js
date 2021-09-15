@@ -17,6 +17,11 @@ const ClinicSearchResults = ({clinicSearch}) => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const mapBreakpoint = 750;
 
+    const queryString = window.location.search
+    console.log(queryString);
+    const urlParams = new URLSearchParams(queryString);
+    const zip = urlParams.get('zip')
+
     // The list of results from the fetch call to the API
     const [clinicList, setClinicList] = useState([])
 
@@ -31,22 +36,13 @@ const ClinicSearchResults = ({clinicSearch}) => {
 
     // Perform fetch call to search for clinics based on parameter from the search page,
     // set the results into ClinicList state and a default office to display on the map
-    useEffect(() => {
-        // Check if dental list was already searched for and saved in session storage
-        const session = sessionStorage.getItem('clinicList')
-
-        // if already in session storage use that data
-        if (session) {
-            setClinicList(JSON.parse(session))
-            setSelectedOffice(JSON.parse(session)[0])
-        } else {
-            // else do fetch call for new data
+   
             let url = ''
 
-            if (/^[0-9,-]+$/.test(clinicSearch)) {
-                url = `https://dentalapi.herokuapp.com/offices/zip/${clinicSearch}`
+            if (/^[0-9,-]+$/.test(zip)) {
+                url = `https://dentalapi.herokuapp.com/offices/zip/${zip}`
             } else {
-                url = `https://dentalapi.herokuapp.com/offices/state/${clinicSearch}`
+                url = `https://dentalapi.herokuapp.com/offices/state/${zip}`
             }
     
             fetch(url)
@@ -60,8 +56,6 @@ const ClinicSearchResults = ({clinicSearch}) => {
                         setResultsFound(false)
                     }
                 })
-        }
-    }, [])
 
     useEffect(() => {
         window.addEventListener("resize", () => setWindowWidth(window.innerWidth));

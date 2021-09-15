@@ -32,13 +32,12 @@ function Router() {
 
   return (
     <Switch>
-      <Route exact path='/'>
-      <Redirect path='/clinic-search'/>
-        <ClinicSearch setClinicSearch={setClinicSearch} />
-      </Route>
+      
       <Route path='/clinic-results'>
-        <ClinicSearchResults clinicSearch={clinicSearch} />
+      {/* <Redirect path='/clinic-results'/> */}
+      <ClinicSearchResults clinicSearch={clinicSearch} />
       </Route>
+      
 
       {/* Components for user login and retrieve info */}
       {/* <Route path='/sign-in' component={SignIn}></Route> */}
