@@ -37,6 +37,7 @@ const ClinicSearchResults = ({clinicSearch}) => {
     // Perform fetch call to search for clinics based on parameter from the search page,
     // set the results into ClinicList state and a default office to display on the map
    
+    useEffect(() => {
             let url = ''
 
             if (/^[0-9,-]+$/.test(zip)) {
@@ -44,7 +45,7 @@ const ClinicSearchResults = ({clinicSearch}) => {
             } else {
                 url = `https://dentalapi.herokuapp.com/offices/state/${zip}`
             }
-    
+
             fetch(url)
                 .then(res => res.json())
                 .then(data => {
@@ -56,6 +57,7 @@ const ClinicSearchResults = ({clinicSearch}) => {
                         setResultsFound(false)
                     }
                 })
+        }, [])
 
     useEffect(() => {
         window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
