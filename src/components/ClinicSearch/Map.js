@@ -56,7 +56,7 @@ const Map = ({selectedOffice}) => {
 
         // create initial map display if no maps exists
         if (coords && !mapState) {
-            const map = L.map(mapRef.current).setView(coords, 15)
+            const map = L.map(mapRef.current).setView(coords, 6)
             L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map)
 
             const layerGroup = L.layerGroup().addTo(map)
@@ -72,8 +72,8 @@ const Map = ({selectedOffice}) => {
         
         // Re-render the map if one already exists
         if (mapState) {
-            mapLayer.clearLayers()
-            mapState.setView(coords, 15)
+            // mapLayer.clearLayers()
+            mapState.setView(coords, 6)
             const marker = L.marker(coords).bindPopup(selectedOffice.name)
             marker.addTo(mapLayer)
             marker.openPopup()
