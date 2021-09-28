@@ -36,8 +36,10 @@ const Map = ({selectedOffice}) => {
     const geocode = () => {
 
         // create address string
-        let address = `${selectedOffice.street} ${selectedOffice.city} ${selectedOffice.state} ${selectedOffice.zip}`
-
+        let address = `${(selectedOffice.street).replace(/#/g, '')} ${selectedOffice.city} ${selectedOffice.state} ${selectedOffice.zip}`
+        console.log(address)
+    //   console.log(address.replace('#', ''))
+    
         // Here api and key
         let geocodeURL = "https://geocode.search.hereapi.com/v1/geocode?q="
         let apiKey = "&apiKey=CYTbL150ptJw9giFb300UjK849kJQC5ENE-mjwbKRe0"

@@ -38,8 +38,8 @@ const ClinicSearchResults = ({clinicSearch}) => {
     // set the results into ClinicList state and a default office to display on the map
    
     useEffect(() => {
-            let url = ''
-
+        let url = ''
+        
             if (/^[0-9,-]+$/.test(zip)) {
                 url = `https://dentalapi.herokuapp.com/offices/zip/${zip}`
             } else {
@@ -47,13 +47,15 @@ const ClinicSearchResults = ({clinicSearch}) => {
             }
 
             fetch(url)
-                .then(res => res.json())
-                .then(data => {
-                    if (data.length > 0) {
-                        setClinicList(data)
-                        for (let i = 0; i < data.length; i++) {
-                            console.log(data[i])
+            .then(res => res.json())
+            .then(data => {
+                if (data.length > 0) {
+                    setClinicList(data)
+                        
+                        for (let i = 0; i < data.length && i < 20; i++) {
+                            // console.log(data[i])
                         setSelectedOffice(data[i])
+                        
                     }
                         sessionStorage.setItem('clinicList', JSON.stringify(data))
                     } else {
