@@ -51,7 +51,10 @@ const ClinicSearchResults = ({clinicSearch}) => {
                 .then(data => {
                     if (data.length > 0) {
                         setClinicList(data)
-                        setSelectedOffice(data[0])
+                        for (let i = 0; i < data.length; i++) {
+                            console.log(data[i])
+                        setSelectedOffice(data[i])
+                    }
                         sessionStorage.setItem('clinicList', JSON.stringify(data))
                     } else {
                         setResultsFound(false)
