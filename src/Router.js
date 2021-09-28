@@ -33,7 +33,7 @@ function Router() {
   return (
     <Switch>
       
-      <Route path='/clinic-results'>
+      <Route path='/'>
       {/* <Redirect path='/clinic-results'/> */}
       <ClinicSearchResults clinicSearch={clinicSearch} />
       </Route>
