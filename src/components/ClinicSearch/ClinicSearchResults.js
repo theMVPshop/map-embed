@@ -43,7 +43,7 @@ const ClinicSearchResults = ({clinicSearch}) => {
             if (/^[0-9,-]+$/.test(zip)) {
                 url = `https://dentalapi.herokuapp.com/offices/zip/${zip}`
             } else {
-                url = `https://dentalapi.herokuapp.com/offices/state/${zip}`
+                url = `https://dentalapi.herokuapp.com/offices/city/${zip}`
             }
 
             fetch(url)
